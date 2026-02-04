@@ -164,15 +164,42 @@ nanobot agent -m "Hello from my local LLM!"
 > [!TIP]
 > The `apiKey` can be any non-empty string for local servers that don't require authentication.
 
-## ☁️ Ollama Cloud
+## 🦙 Ollama (Local & Cloud)
 
-Run large models that don't fit on your machine by automatically offloading to [Ollama Cloud](https://ollama.com/cloud).
+nanobot provides seamless integration with the Ollama ecosystem, allowing you to run models locally or offload them to the cloud.
 
-**1. Create an API Key**
+### Local Ollama
+Run privacy-focused models locally on your own hardware.
+
+**1. Start Ollama server**
+Ensure Ollama is installed and running:
+```bash
+ollama serve
+```
+
+**2. Configure** (`~/.nanobot/config.json`)
+```json
+{
+  "providers": {
+    "ollama": {
+      "apiBase": "http://localhost:11434"
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": "llama3.2"
+    }
+  }
+}
+```
+
+### ☁️ Ollama Cloud
+Run massive models (up to 120B+) without a powerful GPU by offloading to [Ollama Cloud](https://ollama.com/cloud).
+
+**1. API Key**
 Create an [API key](https://ollama.com/settings/keys) on your Ollama account.
 
 **2. Configure** (`~/.nanobot/config.json`)
-
 ```json
 {
   "providers": {
@@ -189,9 +216,8 @@ Create an [API key](https://ollama.com/settings/keys) on your Ollama account.
 ```
 
 **3. Chat**
-
 ```bash
-nanobot agent -m "Explain quantum computing using a 120B model!"
+nanobot agent -m "Explain the theory of relativity using a 120B model."
 ```
 
 ## 💬 Chat Apps
