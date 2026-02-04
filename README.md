@@ -164,6 +164,36 @@ nanobot agent -m "Hello from my local LLM!"
 > [!TIP]
 > The `apiKey` can be any non-empty string for local servers that don't require authentication.
 
+## ☁️ Ollama Cloud
+
+Run large models that don't fit on your machine by automatically offloading to [Ollama Cloud](https://ollama.com/cloud).
+
+**1. Create an API Key**
+Create an [API key](https://ollama.com/settings/keys) on your Ollama account.
+
+**2. Configure** (`~/.nanobot/config.json`)
+
+```json
+{
+  "providers": {
+    "ollama_cloud": {
+      "apiKey": "your_api_key"
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": "gpt-oss:120b"
+    }
+  }
+}
+```
+
+**3. Chat**
+
+```bash
+nanobot agent -m "Explain quantum computing using a 120B model!"
+```
+
 ## 💬 Chat Apps
 
 Talk to your nanobot through Telegram or WhatsApp — anytime, anywhere.
@@ -258,6 +288,8 @@ Config file: `~/.nanobot/config.json`
 | `openai` | LLM (GPT direct) | [platform.openai.com](https://platform.openai.com) |
 | `groq` | LLM + **Voice transcription** (Whisper) | [console.groq.com](https://console.groq.com) |
 | `gemini` | LLM (Gemini direct) | [aistudio.google.com](https://aistudio.google.com) |
+| `ollama` | LLM (Local Ollama) | [ollama.com](https://ollama.com) |
+| `ollama_cloud` | LLM (Ollama Cloud) | [ollama.com/cloud](https://ollama.com/cloud) |
 
 
 <details>
